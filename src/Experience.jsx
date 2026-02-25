@@ -63,7 +63,7 @@ export default function Experience() {
         <Text
           font="./bangers-v20-latin-regular.woff"
           fontSize={isMobile ? 0.3 : 0.6}
-          position={isMobile ? [0, 0.6, 0.75] : [0, 1.35, 0.75]}
+          position={isMobile ? [0, 1, 0.75] : [0, 1.35, 0.75]}
           // rotation-y={-1.25}
           maxWidth={2}
         >
