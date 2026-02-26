@@ -42,14 +42,14 @@ export default function Experience() {
           position={[0, 0.55, -1.15]}
         />
 
-        <group position-y={-0.8} scale={isMobile ? 0.1 : 0.28}>
+        <group position-y={-0.8} scale={isMobile ? 0.15 : 0.28}>
           <primitive object={scene} />
 
           <Html
             transform
             wrapperClass="htmlScreen"
             rotation={[0, 0, 0]}
-            position={[0, 3, 0.3]}
+            position={isMobile ? [0, 4.7, 0.3] : [0, 3, 0.3]}
             distanceFactor={3.3}
           >
             <iframe src="https://beautiful-sorbet-27645f.netlify.app/#skills" />
