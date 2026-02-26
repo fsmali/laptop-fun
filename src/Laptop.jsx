@@ -49,7 +49,7 @@ export default function Experience() {
             transform
             wrapperClass="htmlScreen"
             rotation={[0, 0, 0]}
-            position={isMobile ? [0, 4.7, 0.3] : [0, 3, 0.3]}
+            position={isMobile ? [0, 4.2, 0.3] : [0, 3, 0.3]}
             distanceFactor={3.3}
           >
             <iframe src="https://beautiful-sorbet-27645f.netlify.app/#skills" />
