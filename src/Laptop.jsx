@@ -14,9 +14,7 @@ import { Perf } from 'r3f-perf';
 export default function Experience() {
   const { viewport } = useThree();
   const isMobile = window.innerWidth < 768;
-  const computer = useGLTF(
-    'https://threejs-journey.com/resources/models/macbook_model.gltf',
-  );
+  const { scene } = useGLTF('./laptop.glb');
 
   return (
     <>
@@ -29,7 +27,7 @@ export default function Experience() {
         global
         rotation={[0.13, 0, 0]}
         polar={[0, 0]}
-        azimuth={[-1, 0.75]}
+        azimuth={[-1, 1]}
         damping={0.1}
         scale={isMobile ? 0.8 : 1}
         position={[0, -1, 0]}
@@ -44,26 +42,24 @@ export default function Experience() {
           position={[0, 0.55, -1.15]}
         />
 
-        <primitive
-          object={computer.scene}
-          position-y={-1.2}
-          scale={isMobile ? 0.5 : 1}
-        >
+        <group position-y={-0.8} scale={isMobile ? 0.1 : 0.28}>
+          <primitive object={scene} />
+
           <Html
             transform
             wrapperClass="htmlScreen"
-            distanceFactor={isMobile ? 1.15 : 1.17}
-            position={isMobile ? [0, 1.9, -1.4] : [0, 1.56, -1.4]}
-            rotation-x={-0.256}
+            rotation={[0, 0, 0]}
+            position={[0, 3, 0.3]}
+            distanceFactor={3.3}
           >
             <iframe src="https://beautiful-sorbet-27645f.netlify.app/#skills" />
           </Html>
-        </primitive>
+        </group>
 
         <Text
           font="./bangers-v20-latin-regular.woff"
           fontSize={isMobile ? 0.3 : 0.6}
-          position={isMobile ? [0, 0.6, 0.75] : [0, 1.35, 0.75]}
+          position={isMobile ? [0, 0.6, 0.1] : [0, 1.35, 0.1]}
           // rotation-y={-1.25}
           maxWidth={2}
         >
