@@ -3,18 +3,22 @@ import {
   Html,
   ContactShadows,
   PresentationControls,
-  Float,
   Environment,
   useGLTF,
+  Text3D,
+  Center,
+  useMatcapTexture,
 } from '@react-three/drei';
 import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
 import { Perf } from 'r3f-perf';
 
-export default function Experience() {
+export default function Laptop() {
   const { viewport } = useThree();
   const isMobile = window.innerWidth < 768;
   const { scene } = useGLTF('./laptop.glb');
+  const [matcapTexture] = useMatcapTexture('7B5254_E9DCC7_B19986_C8AC91', 256);
+  console.log(matcapTexture);
 
   return (
     <>
@@ -55,17 +59,30 @@ export default function Experience() {
             <iframe src="https://beautiful-sorbet-27645f.netlify.app/#skills" />
           </Html>
         </group>
+        <Center position={isMobile ? [0.35, 0.6, 0.1] : [0, 1.35, 0.1]}>
+          <Text3D
+            font="./helvetiker_regular.typeface.json"
+            size={isMobile ? 0.2 : 0.4}
+            height={0.2}
+            bevelEnabled
+            bevelThickness={0.02}
+            bevelSize={0.02}
+          >
+            ALI.JS
+            <meshStandardMaterial
+              color={new THREE.Color('hsl(185, 62%, 45%)')}
+            />
+          </Text3D>
+        </Center>
 
-        <Text
+        {/* <Text
           font="./bangers-v20-latin-regular.woff"
           fontSize={isMobile ? 0.3 : 0.6}
           position={isMobile ? [0, 0.6, 0.1] : [0, 1.35, 0.1]}
-          // rotation-y={-1.25}
-          maxWidth={2}
+
         >
           ALI.JS
-        </Text>
-        {/* </Float> */}
+        </Text> */}
       </PresentationControls>
 
       <ContactShadows position-y={-1.4} opacity={0.4} scale={5} blur={2.4} />
