@@ -7,18 +7,23 @@ import {
   useGLTF,
   Text3D,
   Center,
-  useMatcapTexture,
 } from '@react-three/drei';
 import * as THREE from 'three';
-import { useThree } from '@react-three/fiber';
+import { useThree, useFrame } from '@react-three/fiber';
+import { useRef } from 'react';
 import { Perf } from 'r3f-perf';
 
 export default function Laptop() {
   const { viewport } = useThree();
   const isMobile = window.innerWidth < 768;
   const { scene } = useGLTF('./laptop.glb');
-  const [matcapTexture] = useMatcapTexture('7B5254_E9DCC7_B19986_C8AC91', 256);
-  console.log(matcapTexture);
+  const textRef = useRef();
+  useFrame((state, delta) => {
+    const time = state.clock.elapsedTime;
+    if (textRef.current) {
+      textRef.current.position.x = Math.sin(time) * 0.1;
+    }
+  });
 
   return (
     <>
@@ -59,8 +64,9 @@ export default function Laptop() {
             <iframe src="https://beautiful-sorbet-27645f.netlify.app/#skills" />
           </Html>
         </group>
-        <Center position={isMobile ? [0.35, 0.6, 0.1] : [0, 1.35, 0.1]}>
+        <Center position={isMobile ? [0, 0.6, 0.1] : [0, 1.35, 0.1]}>
           <Text3D
+            ref={textRef}
             font="./helvetiker_regular.typeface.json"
             size={isMobile ? 0.2 : 0.4}
             height={0.2}
@@ -74,15 +80,6 @@ export default function Laptop() {
             />
           </Text3D>
         </Center>
-
-        {/* <Text
-          font="./bangers-v20-latin-regular.woff"
-          fontSize={isMobile ? 0.3 : 0.6}
-          position={isMobile ? [0, 0.6, 0.1] : [0, 1.35, 0.1]}
-
-        >
-          ALI.JS
-        </Text> */}
       </PresentationControls>
 
       <ContactShadows position-y={-1.4} opacity={0.4} scale={5} blur={2.4} />
